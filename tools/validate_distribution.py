@@ -39,13 +39,33 @@ def main() -> int:
         fail("invalid Skill frontmatter or name")
     if "绝不超过三个" not in skill_text:
         fail("question ceiling is not explicit")
-    for anchor in ("| 0 |", "| 1 |", "| 10 |", "| 30 |", "| 60 |", "| 100 |"):
+    if "当前展示上限" not in skill_text or "没有 E3 时置信度最高为“中”" not in skill_text:
+        fail("evidence confidence contract is missing")
+    for anchor in (
+        "| 0 |",
+        "| 1 |",
+        "| 3 |",
+        "| 5 |",
+        "| 7 |",
+        "| 10 |",
+        "| 15 |",
+        "| 20 |",
+        "| 30 |",
+        "| 40 |",
+        "| 50 |",
+        "| 60 |",
+        "| 75 |",
+        "| 90 |",
+        "| 100 |",
+    ):
         if anchor not in scoring:
             fail(f"missing scoring anchor {anchor}")
     if "P8C0fW8CYl7FPPdgvlUc2UDOnRg" not in knowledge:
         fail("canonical Feishu Drive folder is missing")
     if "不依赖编号" not in skill_text and "不解析文件名编号" not in knowledge:
         fail("dynamic discovery invariant is missing")
+    if "显示标题不带 `.md`" not in knowledge:
+        fail("Feishu document-title invariant is missing")
 
     forbidden_dependencies = [
         r"dependencies:\s*\n(?:.|\n)*mcp",
