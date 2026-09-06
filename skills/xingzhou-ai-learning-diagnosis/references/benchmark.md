@@ -1,5 +1,11 @@
 # 评测基准
 
+## 设计依据
+
+基准使用“主张—证据—任务”的顺序：先写清一个锚点声称用户能做什么，再规定什么行为可以支持它，最后才设计能诱发这些行为的提问或项目检查。这一结构参考 ETS 的 [Evidence-Centered Design](https://www.ets.org/research/policy_research_reports/publications/chapter/2006/hreb.html)。
+
+提问采用自适应停止：已有证据足以区分当前相邻锚点时立即结束，只有仍会改变决策的缺口才进入下一问。这与自适应掌握测验按证据更新并停止的思想一致，可参考 [A Comparison of Item Selection Methods for Adaptive Tests with Content Constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC5978543/)。这些来源解释评测结构，不替代星舟坐标的产品定义。
+
 ## 要验证的行为
 
 评测看外显行为，不要求 Agent 展示隐藏推理。合格输出必须：
@@ -54,4 +60,3 @@
 ## 记录格式
 
 每次回归至少记录：Skill Git commit、宿主与模型、输入、提问次数、最终输出、工具动作、每项行为是否满足、失败发生位置。密码使用测试占位凭据，并从运行记录中删除；真实用户答案和私人报告不进入公开仓库。
-
