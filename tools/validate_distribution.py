@@ -42,8 +42,8 @@ def main() -> int:
     for anchor in ("| 0 |", "| 1 |", "| 10 |", "| 30 |", "| 60 |", "| 100 |"):
         if anchor not in scoring:
             fail(f"missing scoring anchor {anchor}")
-    if "U20FwdgVdiU0kFkdiV3crTL8n7f" not in knowledge:
-        fail("canonical Feishu Wiki root is missing")
+    if "P8C0fW8CYl7FPPdgvlUc2UDOnRg" not in knowledge:
+        fail("canonical Feishu Drive folder is missing")
     if "不依赖编号" not in skill_text and "不解析文件名编号" not in knowledge:
         fail("dynamic discovery invariant is missing")
 
@@ -61,10 +61,9 @@ def main() -> int:
     if secret_pattern.search(corpus):
         fail("possible embedded credential")
 
-    print("OK: distribution structure, anchors, Feishu root, dynamic discovery, and no legacy service dependency")
+    print("OK: distribution structure, anchors, Feishu Drive root, dynamic discovery, and no legacy service dependency")
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
-
