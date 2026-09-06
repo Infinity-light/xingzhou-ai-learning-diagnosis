@@ -1,0 +1,4 @@
+interface:
+  display_name: "xingzhou-ai-learning-diagnosis"
+  short_description: "用真实行为定位 0–100 AI 学习坐标并匹配最新飞书知识文章"
+  default_prompt: "使用 $xingzhou-ai-learning-diagnosis 从我的一次真实经历判断 AI 学习坐标，并给出有依据的下一步。"

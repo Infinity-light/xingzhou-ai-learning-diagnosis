@@ -1,0 +1,6 @@
+evals/results/
+*.local.*
+.env
+.DS_Store
+Thumbs.db
+

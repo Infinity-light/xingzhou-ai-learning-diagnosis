@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{title}}</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#667085; --line:#e5e7eb; --paper:#ffffff; --wash:#f5f7fb; --accent:#3659c9; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--wash); font:16px/1.72 system-ui,-apple-system,"Segoe UI","PingFang SC",sans-serif; }
+    main { width:min(860px,calc(100% - 32px)); margin:32px auto; padding:48px; background:var(--paper); border:1px solid var(--line); border-radius:20px; }
+    header { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; border-bottom:1px solid var(--line); padding-bottom:28px; }
+    h1,h2 { line-height:1.28; } h1 { margin:0 0 8px; font-size:30px; } h2 { margin:34px 0 12px; font-size:20px; }
+    .score { color:var(--accent); font-size:54px; font-weight:750; letter-spacing:-2px; } .muted { color:var(--muted); }
+    .card { margin:14px 0; padding:18px 20px; border:1px solid var(--line); border-radius:14px; }
+    a { color:var(--accent); } ul { padding-left:22px; } footer { margin-top:38px; color:var(--muted); font-size:13px; }
+    @media (max-width:640px) { main { margin:0; width:100%; padding:28px 20px; border:0; border-radius:0; } header { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <header><div><h1>{{title}}</h1><div class="muted">{{stage}} · {{confidence}}</div></div><div class="score">{{score}}</div></header>
+  <h2>判断依据</h2><div class="card">{{evidence}}</div>
+  <h2>当前边界</h2><div class="card">{{boundary}}</div>
+  <h2>下一道鸿沟</h2><div class="card">{{next_gap}}</div>
+  <h2>行动</h2><div class="card">{{actions}}</div>
+  <h2>匹配阅读</h2><div class="card">{{knowledge}}</div>
+  <footer>{{metadata}}</footer>
+</main>
+</body>
+</html>
+
