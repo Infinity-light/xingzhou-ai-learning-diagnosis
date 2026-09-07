@@ -33,33 +33,44 @@ def main() -> int:
     corpus = "\n".join(texts.values())
     skill_text = texts[SKILL / "SKILL.md"]
     scoring = texts[SKILL / "references" / "scoring.md"]
+    interview = texts[SKILL / "references" / "adaptive-interview.md"]
     knowledge = texts[SKILL / "references" / "feishu-knowledge.md"]
 
     if not skill_text.startswith("---\nname: xingzhou-ai-learning-diagnosis\n"):
         fail("invalid Skill frontmatter or name")
     if "绝不超过三个" not in skill_text:
         fail("question ceiling is not explicit")
-    if "当前展示上限" not in skill_text or "没有 E3 时置信度最高为“中”" not in skill_text:
+    if "每轮只让用户完成一个回答动作" not in skill_text:
+        fail("single-answer-action interview contract is missing")
+    if "问题必须指向已经发生的事情或现存产物" not in skill_text:
+        fail("actual-event interview contract is missing")
+    if "回一个序号就行" not in skill_text or "只说事情名称就行" not in skill_text:
+        fail("low-burden answer formats are missing")
+    if "现有证据最高确认到多少分" not in skill_text or "没有 E3 时置信度最高为“中”" not in skill_text:
         fail("evidence confidence contract is missing")
-    for anchor in (
-        "| 0 |",
-        "| 1 |",
-        "| 3 |",
-        "| 5 |",
-        "| 7 |",
-        "| 10 |",
-        "| 15 |",
-        "| 20 |",
-        "| 30 |",
-        "| 40 |",
-        "| 50 |",
-        "| 60 |",
-        "| 75 |",
-        "| 90 |",
-        "| 100 |",
+    for score_node in (
+        "| 0 分 |",
+        "| 1 分 |",
+        "| 3 分 |",
+        "| 5 分 |",
+        "| 7 分 |",
+        "| 10 分 |",
+        "| 15 分 |",
+        "| 20 分 |",
+        "| 30 分 |",
+        "| 40 分 |",
+        "| 50 分 |",
+        "| 60 分 |",
+        "| 75 分 |",
+        "| 90 分 |",
+        "| 100 分 |",
     ):
-        if anchor not in scoring:
-            fail(f"missing scoring anchor {anchor}")
+        if score_node not in scoring:
+            fail(f"missing scoring node {score_node}")
+    if "锚点" in corpus:
+        fail("legacy anchor terminology remains in user-facing skill files")
+    if "禁止让用户假设未来再次发生时会怎样" not in interview:
+        fail("counterfactual-question ban is missing")
     if "P8C0fW8CYl7FPPdgvlUc2UDOnRg" not in knowledge:
         fail("canonical Feishu Drive folder is missing")
     if "不依赖编号" not in skill_text and "不解析文件名编号" not in knowledge:
@@ -81,7 +92,7 @@ def main() -> int:
     if secret_pattern.search(corpus):
         fail("possible embedded credential")
 
-    print("OK: distribution structure, anchors, Feishu Drive root, dynamic discovery, and no legacy service dependency")
+    print("OK: distribution structure, score nodes, low-burden interview, Feishu Drive root, dynamic discovery, and no legacy service dependency")
     return 0
 
 
